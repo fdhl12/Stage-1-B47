@@ -1,0 +1,292 @@
+.title {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.container {
+    width: 80%;
+    height: 600px;
+    background-color: azure;
+}
+
+/* 
+img {
+    width: 50px;
+
+} */
+
+form {
+    width: 350px;
+    margin: 0px auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+form div {
+    margin-top: 20px;
+
+}
+
+label {
+    font-weight: bold;
+    font-size: 15px;
+
+}
+
+.inputText input {
+
+    padding: 10px;
+    margin-top: 5px;
+    width: 100%;
+    border: 1px solid rgb(169, 169, 169);
+    border-radius: 5px;
+    box-shadow: 0px 5px 3px 0px rgb(209, 209, 209);
+}
+
+select {
+
+    width: 100%;
+}
+
+
+.Date {
+    margin: 0;
+}
+
+input[type="file"] {
+
+    margin-top: 7px;
+    width: 100%;
+    border: 1px solid rgb(169, 169, 169);
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 3px 0px rgb(209, 209, 209);
+}
+
+input::file-selector-button {
+    font-weight: bold;
+    color: grey;
+    padding: 0.5em;
+    border: thin solid grey;
+    border-radius: 3px;
+}
+
+.submit button {
+
+    background-color: black;
+    color: white;
+    padding: 6px 25px;
+    font-size: 15px;
+    border: none;
+    border-radius: 15px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.submit {
+    text-align: right;
+    margin-right: 7px;
+}
+
+button:hover {
+    font-size: 100%;
+    background-color: rgb(248, 92, 35);
+    transition: 0.3s;
+
+}
+
+textarea {
+    resize: none;
+}
+
+
+.card {
+    width: 900px;
+    height: 200px;
+    box-shadow: 5px 5px 35px rgb(205, 205, 205);
+    display: flex;
+    margin: auto;
+    background-color: white;
+}
+
+.card .image {
+    width: 40%;
+    background-color: aqua;
+    align-items: center;
+    display: flex;
+}
+
+.card .image img {
+    width: 100%;
+    padding: 5px 5px;
+}
+
+.card .isi {
+
+    margin-left: 30px;
+    text-align: left;
+    width: 60%;
+}
+
+.tech input {
+    padding: 0;
+    margin: 0;
+}
+
+.tech input {
+    display: flex;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    margin-right: 20px;
+    margin-top: -40px;
+    box-shadow: 0px 0px 0px 0px;
+}
+
+.label {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding-top: -70px;
+}
+
+.logos {
+    display: flex;
+}
+
+.label label {
+    font-weight: lighter;
+    margin-right: 60px;
+    position: relative;
+    top: -42px;
+}
+
+.myproject {
+    width: 100%;
+    height: 400%;
+    background-color: rgb(250, 250, 250);
+}
+
+.myproject .judul {
+    font-weight: bold;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+}
+
+.action button {
+    cursor: pointer;
+}
+
+#contents {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#contents1 {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.card {
+    width: 300px;
+    height: 400px;
+    box-shadow: 5px 5px 25px rgb(224, 224, 224);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.object-cover {
+    object-fit: cover;
+}
+
+.text-card {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.upper p {
+    margin: 0;
+
+}
+
+.upper img {
+    width: 100%;
+    border-radius: 10px;
+    height: 200px;
+}
+
+.title-card {
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+.title-card a {
+    text-decoration: none;
+    color: rgb(9, 1, 35);
+}
+
+.bulan {
+    margin-top: 5px;
+    font-size: 14px;
+    color: rgb(110, 110, 110);
+}
+
+.ts {
+    text-align: center;
+    width: 8%;
+}
+
+.action button {
+    background-color: rgb(4, 1, 34);
+    color: #DCE0E4;
+    width: 48%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.action {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+}
+
+.logo {
+    margin: 10px auto;
+    margin-bottom: 20px;
+}
+
+.logo i {
+    margin-right: 10px;
+}
+
+.date {
+    display: flex;
+}
+
+.upload {
+    margin-top: 0px;
+
+}
+
+.file {
+    margin: 0;
+    display: flex;
+}
+
+.file i {
+    position: relative;
+    top: 25px;
+    right: 25px;
+}

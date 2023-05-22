@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/project.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav">
+            <div class="navbar-l">
+                <img src="assets/image/dw.png" width="40px" alt="">
+                <a href="index.html">Home</a>
+                <a href="project.html" class="list-active">My Project</a>
+                <a href="testimonials.html">Testimonial</a>
+            </div>
+            <div class="navbar-r">
+                <a href="form-contact.html">Contact Me</a>
+                <i class="fa-solid fa-bars" onclick="toggleShowNav()"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="d-none transition" id="nav-sm">
+        <div class="overlay-nav">
+
+            <div class="text-white">
+                <a href="index.html">
+                    Home
+                </a>
+            </div>
+
+            <div class="text-white">
+
+                <a href="form-contact.html">Contact</a>
+            </div>
+            <div class="text-white">
+                <a href="project.html" class="list-active">Project</a>
+            </div>
+            <div class="text-white">
+                <a href="testimonials.html">
+                    Testimonial
+                </a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1 class="title">ADD MY PROJECT</h1>
+    </div>
+    <form action="" onsubmit="getData(event)">
+        <div class="inputText">
+            <div>
+                <label for="projectName">Project Name </label>
+                <input type="text" id="projectName">
+            </div>
+            <div class="date">
+                <div>
+                    <label for="startDate">Start Date </label>
+                    <input type="date" name="startDate" id="startDate">
+                </div>
+                <div>
+                    <label for="endDate">End Date </label>
+                    <input type="date" name="endDate" id="endDate">
+                </div>
+            </div>
+            <div class="desc">
+                <div>
+                    <label for="Description">Description </label>
+                    <input type="text" id="Description">
+                </div>
+            </div>
+            <div class="tech">
+                <label>Technologies </label>
+                <div class="label">
+                    <div>
+                        <div class="logos">
+                            <div>
+                                <input type="checkbox" id="nodeJs" name="vehicle1" value="fa-brands fa-node-js fa-xl">
+                            </div>
+                            <div>
+                                <label for="nodeJs"> Node Js</label>
+                            </div>
+                        </div>
+                        <div class="logos">
+                            <div>
+                                <input type="checkbox" id="reactJs" name="vehicle1" value="fa-brands fa-react fa-xl">
+                            </div>
+                            <div>
+                                <label for="reactJs"> React Js</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="logos">
+                            <div>
+                                <input type="checkbox" id="js" name="vehicle1" value="fa-brands fa-js fa-xl"
+                                    placeholder="Javascript">
+                            </div>
+                            <div>
+                                <label for="Js"> Js </label>
+                            </div>
+                        </div>
+                        <div class="logos">
+                            <div>
+                                <input type="checkbox" id="thunder" name="vehicle1" value="fa-solid fa-bolt"
+                                    placeholder="Thun">
+                            </div>
+                            <div>
+                                <label for="bolt"> Thun </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="upload">
+                <label for="image">Upload Image</label>
+                <div class="file">
+                    <input type="file" id="image"> <i class="fa-solid fa-paperclip"></i>
+                </div>
+            </div>
+            <div class="submit">
+                <button type="submit" id=>submit</button>
+
+            </div>
+        </div>
+    </form>
+    <div class="myproject">
+        <p class="judul">MY PROJECT</p>
+        <div id="contents">
+            <div class="card">
+                <div class="upper">
+                    <img src="assets/image/tokyo-ghoul.jpg" class="object-cover" alt="">
+                </div>
+                <div>
+                    <div class="title-card"><a href="blog-detail.html"> Marketplace Web Apps </a></div>
+                    <div class="bulan"> durasi: 3 Month </div>
+                </div>
+                <div>
+                    <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam ducimus.</p>
+                </div>
+                <div>
+                    <div class="logo" id="logo">
+                        <i class="fa-brands fa-node-js fa-xl"></i>
+                        <i class="fa-brands fa-react fa-xl"></i>
+                        <i class="fa-brands fa-js fa-xl"></i>
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="action">
+                        <button>edit</button>
+                        <button>delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/project.js"></script>
+</body>
+
+</html>
