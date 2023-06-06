@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/form.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav">
+            <div class="navbar-l">
+                <img src="assets/image/dw.png" width="40px" alt="">
+                <a href="index.html">Home</a>
+                <a href="my-project.html">My Project</a>
+                <a href="#">Testimonial</a>
+            </div>
+            <div class="navbar-r">
+                <a href="form-contact.html">Contact Me</a>
+                <i class="fa-solid fa-bars" onclick="toggleShowNav()"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="d-none transition" id="nav-sm">
+        <div class="overlay-nav">
+
+            <div class="text-white">
+                <a href="index.html">
+                    Home
+                </a>
+            </div>
+
+            <div class="text-white">
+
+                <a href="form-contact.html">Contact</a>
+            </div>
+            <div class="text-white">
+                <a href="my-project.html">Project</a>
+            </div>
+            <div class="text-white">
+                <a href="testimonials.html">
+                    Testimonial
+                </a>
+            </div>
+        </div>
+    </div>
+    <p class="h2">GET IN TOUCH</p>
+    <form>
+        <div class="name">
+            <label for="name">Name</label>
+            <input id="name" type="text" placeholder="Your Name">
+        </div>
+        <div class="email">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="Your Email">
+        </div>
+        <div>
+            <label for="phone">Phone Number</label>
+            <input id="phone" type="number" placeholder="Your Phone Number">
+        </div>
+        <div>
+            <label for="subject">subject</label>
+            <select id="subject">
+                <option selected disabled></option>
+                <option>Collaboration</option>
+                <option>Discussion</option>
+                <option>Meeting</option>
+            </select>
+        </div>
+        <div>
+            <label for="address">address</label>
+            <textarea id="address" placeholder="Your Address"></textarea>
+        </div>
+        <div>
+            <button type="button" onclick="getData()">submit here</button>
+        </div>
+    </form>
+    <script src="assets/js/form-contact.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
