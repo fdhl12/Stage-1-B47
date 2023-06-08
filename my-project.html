@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/project.css">
+</head>
+
+<body>
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid px-lg-5">
+                <a href="https://dumbways.id">
+                    <img src="assets/image/dw.png" width="40" alt="dumbways" /> </a>
+                <button class="navbar-toggler" title="button" type="button" onclick="toggleShowNav()">
+
+                    <i class=" fa-solid fa-bars" role="button" title="button"></i>
+                </button>
+                <div class=" collapse navbar-collapse mx-5">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item dropdown" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="/project" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Project
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class=" nav-item">
+                                    <a class="dropdown-item nav-link" href="/add-project">Add Project</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="testimonials.html" class="nav-link">Testimonials</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <div class="d-none" id="nav-sm" style="transition: all 0.3s;">
+
+            <div class="p-4 bg-black bg-opacity-50 position-absolute w-100">
+
+                <div class="d-flex flex-column align-items-center ">
+
+                    <div class="text-black">
+                        <a href="/" class="list-active nav-link text-white">
+                            Home
+                        </a>
+                    </div>
+                    <div class="text-black">
+
+                        <a href="/contact" class="nav-link text-white">Contact</a>
+                    </div>
+                    <div class="border bg-warning ps-2 pe-2 border-warning rounded-4">
+                        <a href="/project" class="nav-link text-white">Project</a>
+                    </div>
+                    <div class="text-black">
+                        <a href="testimonials.html" class="nav-link text-white">Testimonials</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div>
+            <div class="container-project">
+                <div class="container-form">
+                    <form onsubmit="addBlog(event)">
+                        <h1 class="title">ADD MY PROJECT</h1>
+                        <div class="input-blog">
+                            <label for="input-blog-title">Project Name</label>
+                            <input type="text" id="input-blog-title" required>
+                        </div>
+                        <div class="input-date">
+                            <div>
+                                <label for="input-start-date">Start Date</label>
+                                <input type="date" id="input-start-date" required>
+                            </div>
+                            <div>
+                                <label for="input-end-date">End Date</label>
+                                <input type="date" id="input-end-date" required>
+                            </div>
+                        </div>
+                        <div class="input-desc">
+                            <label for="input-blog-desc">Deskripsi</label>
+                            <textarea name="" id="input-blog-desc" cols="30" rows="7" required></textarea>
+                        </div>
+                        <div class="input-checkbox">
+                            <Label>Technologies</Label>
+                            <div class="checkbox-group">
+                                <div>
+                                    <input type="checkbox" name="option1" value="Next JS" id="input-checkbox-html">
+                                    <label for="input-checkbox-html">HTML</label>
+
+                                    <input type="checkbox" name="option2" value="React JS" id="input-checkbox-css">
+                                    <label for="input-checkbox-css">CSS</label>
+                                </div>
+                                <div>
+                                    <input type="checkbox" name="option3" value="Node JS" id="input-checkbox-rjs">
+                                    <label for="input-checkbox-rjs">React JS</label>
+
+                                    <input type="checkbox" name="option4" value="TypeScript" id="input-checkbox-js">
+                                    <label for="input-checkbox-js">JavaScript</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="upload-container">
+                            <input type="file" id="image-upload" class="file-input">
+                            <label for="image-upload" class="file-label">
+                                <span class="choose-text">Choose image</span>
+                                <i class="fa-solid fa-paperclip"></i>
+                            </label>
+                        </div>
+                        <div class="button">
+                            <button type="submit" onclick="formSubmit()">Post Blog</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="bg-project">
+            <h2>My Project</h2>
+            <div class="container-project" id="contents">
+                <div class="card-project">
+                    <div class="img-project">
+                        <img src="assets/image/image-project.png" alt="">
+                    </div>
+                    <a href="blog-detail.html" class="title-project">Game Store Web</a>
+                    <div class="duration-project">Duration : 1 bulan, 7 hari</div>
+                    <div class="post-time-project">2 day ago - 23 May 2023 22:42 WIB</div>
+                    <div class="mini-desc-project">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, vero
+                        quia id quae sapiente maxime.</div>
+                    <div class="tech-project">
+                        <i class="fa-brands fa-js"></i>
+                        <i class="fa-brands fa-react"></i>
+                    </div>
+                    <div class="button-project">
+                        <button>Edit</button>
+                        <button>Delete</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="assets/js/main.js"></script>
+        <script src="assets/js/project.js"></script>
+</body>
+
+</html>
