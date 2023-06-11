@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <link rel="stylesheet" href="/public/css/bootstrap.css">
+</head>
+
+<body>
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid px-lg-5">
+                <a href="https://dumbways.id">
+                    <img src="/public/image/dw.png" width="40" alt="dumbways" /> </a>
+                <button class="navbar-toggler" title="button" type="button" onclick="toggleShowNav()">
+
+                    <i class=" fa-solid fa-bars" role="button" title="button"></i>
+                </button>
+                <div class=" collapse navbar-collapse mx-5">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item dropdown" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="/project" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Project
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class=" nav-item">
+                                    <a class="dropdown-item nav-link" href="/add-project">Add Project</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="testimonials.html" class="nav-link">Testimonials</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <div class="border bg-warning p-sm-1 border-warning rounded-4">
+
+                            <a href="/contact" class="nav-link">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="d-none" id="nav-sm" style="transition: all 0.3s;">
+
+            <div class="p-4 bg-black bg-opacity-50 position-absolute w-100">
+
+                <div class="d-flex flex-column align-items-center ">
+
+                    <div class="border bg-warning ps-2 pe-2 border-warning rounded-4">
+                        <a href="/" class="list-active nav-link text-white">
+                            Home
+                        </a>
+                    </div>
+                    <div class="text-black">
+
+                        <a href="/contact" class="nav-link text-white">Contact</a>
+                    </div>
+                    <div class="text-black">
+                        <a href="/project" class="nav-link text-white">Project</a>
+                    </div>
+                    <div class="text-black">
+                        <a href="testimonials.html" class="nav-link text-white">Testimonials</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+        <div class="mt-lg-2">
+            <div
+                class="d-md-flex flex-row-reverse p-lg-5 m-lg-5 border border-opacity-75 shadow p-3 mb-5 bg-white rounded">
+                <div class="border border-opacity-75 shadow p-3 mb-5 bg-white rounded">
+                    <div>
+                        <img src="/public/image/personal.jpg" class="card-img-top" alt="profil" />
+                        <h2>Muhammad Risky Fadhiila</h2>
+                        <p class="text-center">Fullstack Developer</p>
+                    </div>
+                </div>
+                <div class="content-left">
+                    <div class="pe-5">
+                        <h1>Hi Welcome to my profil</h1>
+
+                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cum qui dolorum atque, ex hic
+                            veritatis doloremque eos nisi possimus? Dicta, eos, temporibus quis itaque repudiandae,
+                            obcaecati sit numquam fugit quibusdam sed eveniet doloremque. Adipisci perferendis fugit
+                            blanditiis aut. Deleniti?</p>
+                    </div>
+                    <div class="d-flex">
+                        <a href="#" class="nav-link border bg-warning p-sm-2 border-warning rounded-4">Contact</a>
+                        <div>
+                            <p class="ms-sm-5" role="button"> Download CV
+                                <i class=" fa-solid fa-download"></i>
+                        </div>
+                        </p>
+
+                    </div>
+                    <div class="d-flex mt-sm-3 gap-3">
+                        <a class="nav-link" title="linkedin"
+                            href="https://www.linkedin.com/in/risky-fadhiila-9336171a6/">
+                            <i class="fa-brands fa-linkedin fa-2x"></a></i>
+                        <a class="nav-link" title="instagram" href="https://www.instagram.com/mrskyfdhl/">
+                            <i class="fa-brands fa-instagram fa-2x"></i></a>
+                        <a class="nav-link" title="facebook" href="https://www.facebook.com/risky.allfams">
+                            <i class="fa-brands fa-facebook fa-2x"></i> </a>
+                        <a class="nav-link" title="twitter" href="#">
+                            <i class="fa-brands fa-twitter fa-2x"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="/public/js/main.js"></script>
+</body>
+
+</html>
