@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/public/css/bootstrap.css">
+    <!-- <link rel="stylesheet" href="/public/css/project.css"> -->
+</head>
+
+<body>
+    <div class="sticky-top">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid px-lg-5">
+                <a href="https://dumbways.id">
+                    <img src="/public/image/dw.png" width="40" alt="dumbways" /> </a>
+                <button class="navbar-toggler" title="button" type="button" onclick="toggleShowNav()">
+
+                    <i class=" fa-solid fa-bars" role="button" title="button"></i>
+                </button>
+                <div class=" collapse navbar-collapse mx-5">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item dropdown" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="/project" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Project
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class=" nav-item">
+                                    <a class="dropdown-item nav-link" href="/add-project">Add Project</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">Another</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/testimonials" class="nav-link">Testimonials</a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <div class="border bg-warning p-sm-1 border-warning rounded-4">
+
+                            <a href="/contact" class="nav-link">Contact Me</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="d-none" id="nav-sm" style="transition: all 0.3s;">
+
+            <div class="p-4 bg-black bg-opacity-50 position-absolute w-100">
+
+                <div class="d-flex flex-column align-items-center ">
+
+                    <div class="border bg-warning ps-2 pe-2 border-warning rounded-4">
+                        <a href="/" class="list-active nav-link text-white">
+                            Home
+                        </a>
+                    </div>
+                    <div class="text-black">
+
+                        <a href="/contact" class="nav-link text-white">Contact</a>
+                    </div>
+                    <div class="text-black">
+                        <a href="/project" class="nav-link text-white">Project</a>
+                    </div>
+                    <div class="text-black">
+                        <a href="/testimonials" class="nav-link text-white">Testimonials</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center fw-bold">
+        <div class="container-form mt-3 p-2" style="width: 450px;">
+            <h1 class="text-center fw-bold mb-3">Edit Project</h1>
+            <form action="/edit-project/{{.Project.Id}}" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="input-project-name">Project Name</label>
+                    <input class="form-control shadow-sm" type="text" name="input-name" id="input-project-name"
+                        value="{{.Project.Name}}" />
+                </div>
+                <div class="mb-3 row g-2">
+                    <div class="col">
+                        <label class="form-label" for="input-start">Start Date</label>
+                        <div class="col">
+                            <input class="form-control shadow-sm " value="{{ .StartDate}}" id="input-start" type="date"
+                                name="StartDate" />
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label class="form-label" for="input-end">End Date</label>
+                        <div class="col">
+                            <input class="form-control shadow-sm" value="{{.EndDate}}" id="input-end" type="date"
+                                name="EndDate">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="input-description">Description</label>
+                    <textarea class="form-control shadow-sm" style="resize: none; height: 100px;" id="input-description"
+                        name="Description" aria-valuetext="">{{ .Project.Description}}</textarea>
+                </div>
+
+                <div>
+                    <label>Technologies</label>
+                    <div class="d-flex mb-3">
+                        <div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input shadow-sm" type="checkbox" id="input-checkbox-html"
+                                    name="html" value="html" {{if .Project.Html}}checked{{end}}>
+                                <label class="form-check-label" for="input-check-html">HTML</label>
+                            </div>
+                            <div class="">
+                                <input class="form-check-input shadow-sm" type="checkbox" id="input-checkbox-css"
+                                    name="css" value="css" {{if .Project.Css}}checked {{end}}>
+                                <label class="form-check-label" for="input-check-css">CSS</label>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="">
+                                <input class="form-check-input shadow-sm" type="checkbox" id="input-checkbox-rjs"
+                                    name="react" value="react" {{if .Project.Reactjs}}checked{{end}}>
+                                <label class="form-check-label" for="input-check-react">React</label>
+                            </div>
+                            <div class="">
+                                <input class="form-check-input shadow-sm" type="checkbox" id="input-checkbox-js"
+                                    name="javascript" value="javascript" {{if .Project.Javascript}}checked{{end}}>
+                                <label class="form-check-label" for="input-check-javascript">Javascript</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="input-project-image" class="form-label">Upload Image</label>
+                    <div class="input-group mb-3">
+                        <input type="file" name="/public/image/image-project.png" class="form-control"
+                            id="input-project-image">
+                        <label class="input-group-text" for="input-project-image"></label>
+                    </div>
+                </div>
+                <div class="button-submit d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="submit" class="btn btn-primary text-white rounded-pill fw-bold">submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- halaman bawah p2 -->
+        <div class="row justify-content-center">
+            <!-- <h1>RESULT</h1> -->
+            <div class="col-lg col-md-4 col-sm-6 mb-3" id="contents">
+                <!-- result card -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/public/js/project.js"></script>
+    <script scr="/public/js/main.js"></script>
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

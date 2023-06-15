@@ -41,7 +41,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="testimonials.html" class="nav-link">Testimonials</a>
+                            <a href="/testimonials" class="nav-link">Testimonials</a>
                         </li>
                     </ul>
                     <div class="d-flex">
@@ -73,7 +73,7 @@
                         <a href="/project" class="nav-link text-white">Project</a>
                     </div>
                     <div class="text-black">
-                        <a href="testimonials.html" class="nav-link text-white">Testimonials</a>
+                        <a href="/testimonials" class="nav-link text-white">Testimonials</a>
                     </div>
                 </div>
             </div>
@@ -83,47 +83,47 @@
         <div>
             <div class="container-project">
                 <div class="container-form">
-                    <form onsubmit="addBlog(event)">
+                    <form action="/add-project" method="post">
                         <h1 class="title">ADD MY PROJECT</h1>
                         <div class="input-blog">
                             <label for="input-blog-title">Project Name</label>
-                            <input type="text" id="input-blog-title" required>
+                            <input type="text" id="input-blog-title" name="name-title" required>
                         </div>
                         <div class="input-date">
                             <div>
                                 <label for="input-start-date">Start Date</label>
-                                <input type="date" id="input-start-date" required>
+                                <input type="date" name="StartDate" id="input-start-date" required>
                             </div>
                             <div>
                                 <label for="input-end-date">End Date</label>
-                                <input type="date" id="input-end-date" required>
+                                <input type="date" name="EndDate" id="input-end-date" required>
                             </div>
                         </div>
                         <div class="input-desc">
                             <label for="input-blog-desc">Deskripsi</label>
-                            <textarea name="" id="input-blog-desc" cols="30" rows="7" required></textarea>
+                            <textarea name="Description" id="input-blog-desc" cols="30" rows="7" required></textarea>
                         </div>
                         <div class="input-checkbox">
-                            <Label>Technologies</Label>
+                            <label>Technologies</label>
                             <div class="checkbox-group">
                                 <div>
-                                    <input type="checkbox" name="option1" value="Next JS" id="input-checkbox-html">
+                                    <input type="checkbox" name="html" value="html" id="input-checkbox-html">
                                     <label for="input-checkbox-html">HTML</label>
 
-                                    <input type="checkbox" name="option2" value="React JS" id="input-checkbox-css">
+                                    <input type="checkbox" name="css" value="css" id="input-checkbox-css">
                                     <label for="input-checkbox-css">CSS</label>
                                 </div>
                                 <div>
-                                    <input type="checkbox" name="option3" value="Node JS" id="input-checkbox-rjs">
+                                    <input type="checkbox" name="react" value="reactjs" id="input-checkbox-rjs">
                                     <label for="input-checkbox-rjs">React JS</label>
 
-                                    <input type="checkbox" name="option4" value="TypeScript" id="input-checkbox-js">
+                                    <input type="checkbox" name="javascript" value="javascript" id="input-checkbox-js">
                                     <label for="input-checkbox-js">JavaScript</label>
                                 </div>
                             </div>
                         </div>
                         <div class="upload-container">
-                            <input type="file" id="image-upload" class="file-input">
+                            <input type="file" name="image" id="image-upload" class="file-input">
                             <label for="image-upload" class="file-label">
                                 <span class="choose-text">Choose image</span>
                                 <i class="fa-solid fa-paperclip"></i>
@@ -160,10 +160,12 @@
                     </div>
                 </div>
 
+
             </div>
         </div>
-        <script src="public/js/main.js"></script>
-        <script src="public/js/project.js"></script>
+    </div>
+    <script src="public/js/main.js"></script>
+    <script src="public/js/project.js"></script>
 </body>
 
 </html>
