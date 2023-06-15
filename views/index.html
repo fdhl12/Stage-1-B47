@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-    <link rel="stylesheet" href="/public/css/bootstrap.css">
+    <link rel="stylesheet" href="/public/css/bootstrap.min.css ">
     <link rel="stylesheet" href="/public/css/project.css">
 </head>
 
@@ -45,14 +45,53 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <div class="border bg-warning p-sm-1 border-warning rounded-4">
+                        <div class="d-flex">
+                            {{if .DataSession.IsLogin}}
+                            <li class="navbar-nav nav-item nav">
+                                <a class="nav-link fs-5" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    HAY, {{.DataSession.Name}}
+                                </a>
+                            <li class="navbar-nav nav-item nav me-3">
+                                <form id="myform" action="/logout" method="POST"></form>
+                                <button onclick="document.getElementById('myform').submit()"
+                                    class="btn btn-danger rounded-4">
+                                    Logout
+                                </button>
+                            </li>
+                            </li>
 
-                            <a href="/contact" class="nav-link">Contact Me</a>
+
+                            {{else}}
+                            <li class="nav-item nav justify-content-center">
+                                <a href="/login" class="nav-link text-decoration-none fs-5">Login</a>
+                            </li>
+                            <li class="nav-item nav justify-content-center">
+                                <a href="/register" class="nav-link text-decoration-none fs-5">Signup</a>
+                            </li>
+                            {{end}}
+                            <li class="nav-item nav justify-content-center border bg-warning ps-1 pe-1 border-warning
+                                rounded-4">
+                                <a href="/contact" class="nav-link text-decoration-none">Contact Me</a>
+                            </li>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
+
+        {{if .FlashMessage}} {{if .FlashStatus}}
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+            <strong>{{.FlashMessage}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{else}}
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            <strong>{{.FlashMessage}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{end}} {{end}}
+
 
         <div class="d-none" id="nav-sm" style="transition: all 0.3s;">
 
@@ -174,6 +213,9 @@
         </div>
     </div>
     <script src="/public/js/main.js"></script>
+    <script src="/public/js/bootstrap.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>

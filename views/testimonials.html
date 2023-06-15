@@ -44,32 +44,76 @@
                             <a href="/testimonials" class="nav-link">Testimonials</a>
                         </li>
                     </ul>
+                    <div class="d-flex">
+                        <div class="d-flex">
+                            {{if .DataSession.IsLogin}}
+                            <li class="navbar-nav nav-item nav">
+                                <a class="nav-link fs-5" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    HAY, {{.DataSession.Name}}
+                                </a>
+                            <li class="navbar-nav nav-item nav me-3">
+                                <form id="myform" action="/logout" method="POST"></form>
+                                <button onclick="document.getElementById('myform').submit()"
+                                    class="btn btn-danger rounded-4">
+                                    Logout
+                                </button>
+                            </li>
+                            </li>
 
+
+                            {{else}}
+                            <li class="nav-item nav justify-content-center">
+                                <a href="/login" class="nav-link text-decoration-none fs-5">Login</a>
+                            </li>
+                            <li class="nav-item nav justify-content-center">
+                                <a href="/register" class="nav-link text-decoration-none fs-5">Signup</a>
+                            </li>
+                            {{end}}
+                            <li class="nav-item nav justify-content-center border bg-warning ps-1 pe-1 border-warning
+                                rounded-4">
+                                <a href="/contact" class="nav-link text-decoration-none">Contact Me</a>
+                            </li>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
 
-        <div class="d-none" id="nav-sm" style="transition: all 0.3s;">
+        {{if .FlashMessage}} {{if .FlashStatus}}
+        <div class="alert alert-success alert-dismissable fade show" role="alert">
+            <strong>{{.FlashMessage}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{else}}
+        <div class="alert alert-danger alert-dismissable fade show" role="alert">
+            <strong>{{.FlashMessage}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{end}} {{end}}
 
-            <div class="p-4 bg-black bg-opacity-50 position-absolute w-100">
+    </div>
 
-                <div class="d-flex flex-column align-items-center ">
+    <div class="d-none" id="nav-sm" style="transition: all 0.3s;">
 
-                    <div class="text-black">
-                        <a href="/" class="list-active nav-link text-white">
-                            Home
-                        </a>
-                    </div>
-                    <div class="text-black">
+        <div class="p-4 bg-black bg-opacity-50 position-absolute w-100">
 
-                        <a href="/contact" class="nav-link text-white">Contact</a>
-                    </div>
-                    <div class="text-black">
-                        <a href="/project" class="nav-link text-white">Project</a>
-                    </div>
-                    <div class="border bg-warning ps-2 pe-2 border-warning rounded-4">
-                        <a href="/testimonials" class="nav-link text-white">Testimonials</a>
-                    </div>
+            <div class="d-flex flex-column align-items-center ">
+
+                <div class="text-black">
+                    <a href="/" class="list-active nav-link text-white">
+                        Home
+                    </a>
+                </div>
+                <div class="text-black">
+
+                    <a href="/contact" class="nav-link text-white">Contact</a>
+                </div>
+                <div class="text-black">
+                    <a href="/project" class="nav-link text-white">Project</a>
+                </div>
+                <div class="border bg-warning ps-2 pe-2 border-warning rounded-4">
+                    <a href="/testimonials" class="nav-link text-white">Testimonials</a>
                 </div>
             </div>
         </div>
