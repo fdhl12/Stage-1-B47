@@ -120,7 +120,7 @@
         <div>
             <div class="container-project">
                 <div class="container-form">
-                    <form action="/add-project" method="post">
+                    <form action="/add-project" method="post" enctype="multipart/form-data">
                         <h1 class="title">ADD MY PROJECT</h1>
                         <div class="input-blog">
                             <label for="input-blog-title">Project Name</label>
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                         <div class="upload-container">
-                            <input type="file" name="image" id="image-upload" class="file-input">
+                            <input type="file" name="dataFile" id="image-upload" class="file-input">
                             <label for="image-upload" class="file-label">
                                 <span class="choose-text">Choose image</span>
                                 <i class="fa-solid fa-paperclip"></i>

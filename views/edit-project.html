@@ -84,7 +84,7 @@
     <div class="container d-flex justify-content-center fw-bold">
         <div class="container-form mt-3 p-2" style="width: 450px;">
             <h1 class="text-center fw-bold mb-3">Edit Project</h1>
-            <form action="/edit-project/{{.Project.Id}}" method="POST">
+            <form action="/edit-project/{{.Project.Id}}" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label class="form-label" for="input-project-name">Project Name</label>
                     <input class="form-control shadow-sm" type="text" name="input-name" id="input-project-name"
@@ -145,8 +145,7 @@
                 <div class="mb-3">
                     <label for="input-project-image" class="form-label">Upload Image</label>
                     <div class="input-group mb-3">
-                        <input type="file" name="/public/image/image-project.png" class="form-control"
-                            id="input-project-image">
+                        <input type="file" name="dataFile" class="form-control" id="input-project-image">
                         <label class="input-group-text" for="input-project-image"></label>
                     </div>
                 </div>

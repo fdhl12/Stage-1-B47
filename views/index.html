@@ -170,10 +170,10 @@
             {{range $index, $data := .Projects}}
             <div class="card-project">
                 <div class="img-project">
-                    <img src="{{$data.Image}}" class="img-project" alt="card" />
+                    <img src="/uploads/{{$data.Image}}" class="img-project" alt="card" />
                 </div>
-                <div class="title-project"><a href="/project/{{$data.Id}}">{{$data.Name}}</a></div>
-                <div class="duration-project">Duration : {{$data.Duration}}
+                <div class="title-project"><a href="/project/{{$data.Id}}" class="nav nav-link">{{$data.Name}}</a></div>
+                <div class="duration-project">Duration : {{$data.Duration}} - {{$data.Author}}
                 </div>
                 <div class="post-time-project">{{$data.StartDateTime}} - {{$data.EndDateTime}}</div>
                 <div class="mini-desc-project">{{$data.Description}}</div>
@@ -198,8 +198,8 @@
                     {{end}}
 
 
-
                 </div>
+                {{ if $.DataSession.IsLogin }}
                 <div class="button-project">
                     <a href="/edit-project/{{$data.Id}}"
                         class="nav-link text-white ps-5 pe-5 border border-2 bg-danger rounded-3" value="Edit">Edit</a>
@@ -208,6 +208,7 @@
                     </form>
                     <!-- <a href="/deleteProject/{{$data.Id}}" value="Delete">Delete</a> -->
                 </div>
+                {{ end }}
             </div>
             {{end}}
         </div>

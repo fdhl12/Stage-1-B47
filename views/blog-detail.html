@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Detail Project</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
     <link rel="stylesheet" href="/public/css/bootstrap.css">
     <link rel=" stylesheet" href="/public/css/blog.css">
@@ -45,9 +45,35 @@
                         </li>
                     </ul>
                     <div class="d-flex">
-                        <div class="border bg-warning p-sm-1 border-warning rounded-4">
+                        <div class="d-flex">
+                            {{if .DataSession.IsLogin}}
+                            <li class="navbar-nav nav-item nav">
+                                <a class="nav-link fs-5" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    HAY, {{.DataSession.Name}}
+                                </a>
+                            <li class="navbar-nav nav-item nav me-3">
+                                <form id="myform" action="/logout" method="POST"></form>
+                                <button onclick="document.getElementById('myform').submit()"
+                                    class="btn btn-danger rounded-4">
+                                    Logout
+                                </button>
+                            </li>
+                            </li>
 
-                            <a href="/contact" class="nav-link">Contact Me</a>
+
+                            {{else}}
+                            <li class="nav-item nav justify-content-center">
+                                <a href="/login" class="nav-link text-decoration-none fs-5">Login</a>
+                            </li>
+                            <li class="nav-item nav justify-content-center">
+                                <a href="/register" class="nav-link text-decoration-none fs-5">Signup</a>
+                            </li>
+                            {{end}}
+                            <div class="border bg-warning p-sm-1 border-warning rounded-4">
+
+                                <a href="/contact" class="nav-link">Contact Me</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -86,7 +112,7 @@
         <h1 class="text-center fw-bold">{{.Project.Name}}</h1>
         <div class="row g-0 mt-5 mb-5 g-4">
             <div class="col-sm-6 col-md-8">
-                <img class="img-fluid p-3" src="/public/image/image-project.png" alt="bmth">
+                <img class="img-fluid p-3" src="/uploads/{{.Project.Image}}" alt="img" />
             </div>
             <div class="col-sm-6 col-md-4 mb-5">
                 <div class="">
@@ -95,6 +121,7 @@
                         {{.StartDate}} -
                         {{.EndDate}}</h5>
                     <h5 class="mb-3 fs-4"><i class="fs-2 fa-solid fa-clock"></i> {{.Project.Duration}}</h5>
+
                 </div>
                 <div class="container mt-5">
                     <h2 class="mb-3 fs-1">Technologies</h2>
@@ -118,14 +145,16 @@
                         <div class="col">
                             <h5 class="mb-3 fs-3"><i class="fs-2 fa-brands fa-css3-alt"></i>CSS</h5>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="">
-            <p style="text-align: justify;">{{.Project.Description}}
-            </p>
+
+                    </div>
+                    <!-- <div class="align-items-center justify-content-center">
+                        
+                    </div> -->
+                </div>
+
+            </div>
+            <h5> {{.Project.Description}} </h5>
         </div>
     </div>
 

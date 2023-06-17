@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"path"
 	"personalWeb/connection"
+	"personalWeb/middleware"
 	"regexp"
 	"strconv"
 	"time"
@@ -32,9 +33,11 @@ type Project struct {
 	Image			string
 	StartDateTime	string
 	EndDateTime		string
+	Author      	string
+	AuthorId 		int
 }
 type User struct {
-	Id       int
+	AuthorId int
 	Name     string
 	Email    string
 	Password string
@@ -60,6 +63,7 @@ func main() {
 	e := echo.New()
 
 	e.Static("/public", "public")
+	e.Static("/uploads", "uploads")
 
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte("session"))))
 
@@ -68,10 +72,10 @@ func main() {
 	e.GET("/contact", contact)
 	e.GET("/project/:id", detailproject)
 	e.GET("/testimonials", testimonials)
-	e.POST("/add-project", addNewProject)
+	e.POST("/add-project",middleware.UploadFile(addNewProject))
 	e.GET("formAddProject/:id", formAddProject)
 	e.POST("/deleteProject/:id", deleteProject)
-	e.POST("/edit-project/:id", ressEditProject)
+	e.POST("/edit-project/:id",middleware.UploadFile(ressEditProject))
 	e.GET("/edit-project/:id", editProject)
 
 	//SIGNUP
@@ -90,54 +94,71 @@ func main() {
 }
 
 func home(c echo.Context) error {
-	data, _ := connection.Conn.Query(context.Background(), "SELECT * FROM tb_projects")
-	
-	var projectData []Project
-	
-	
-	for data.Next() {
-		var each = Project{}
-		// fmt.Println(each)
-		err := data.Scan(&each.Id, &each.Name, &each.StartDate, &each.EndDate, &each.Duration, &each.Description,  &each.Image , &each.Html, &each.Css, &each.Reactjs, &each.Javascript)
-		if err != nil {
-			fmt.Println(err.Error())
-			return c.JSON(http.StatusInternalServerError, map[string]string{"Message": err.Error()})
-		}
-		each.Duration = countDuration(each.StartDate, each.EndDate)
-		each.StartDateTime = each.StartDate.Format("2006-01-02")
-		each.EndDateTime = each.EndDate.Format("2006-01-02")
-
-		projectData = append(projectData, each)
-	}
-		
-	sess, _ := session.Get("session", c)
-
-	if sess.Values["isLogin"] != true {
-		userData.IsLogin = false
-	} else {
-		userData.IsLogin = sess.Values["isLogin"].(bool)
-		userData.Name = sess.Values["name"].(string)
-	}
-
-		
-		projects := map[string]interface{}{
-		"Projects": projectData,
-		"DataSession": userData,
-	}
-
-	delete(sess.Values, "message")
-	delete(sess.Values, "status")
-	sess.Save(c.Request(), c.Response())
-
 	var tmpl, err = template.ParseFiles("views/index.html")
 
-	if err != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
-	}
+	
+	sess, _ := session.Get("session", c)
 
-	return tmpl.Execute(c.Response(), projects)
-}
-func project(c echo.Context) error {
+	var result []Project
+	if sess.Values["isLogin"] != true {
+		data, _ := connection.Conn.Query(context.Background(), "SELECT tb_projects.id, title, start_date, end_date, duration, description, html, css, react, javascript, image, tb_user.name AS author, author_id FROM tb_projects JOIN tb_user ON tb_projects.author_id = tb_user.author_id ORDER BY tb_projects.id DESC")
+
+		for data.Next() {
+			var each = Project{}
+
+			err := data.Scan(&each.Id, &each.Name, &each.StartDate, &each.EndDate, &each.Duration, &each.Description, &each.Html, &each.Css, &each.Reactjs, &each.Javascript, &each.Image, &each.Author, &each.AuthorId)
+			if err != nil {
+				return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+			}
+			// each.Duration = countDuration(each.StartDate, each.EndDate)
+			each.StartDateTime = each.StartDate.Format("2 January 2006")
+			each.EndDateTime = each.EndDate.Format("2 January 2006")
+
+			result = append(result, each)
+		}
+	} else {
+		userId := sess.Values["id"].(int)
+		data, _ := connection.Conn.Query(context.Background(), "SELECT tb_projects.id, title, start_date, end_date, duration, description, html, css, react, javascript, image, tb_user.name AS author FROM tb_projects JOIN tb_user ON tb_projects.author_id = tb_user.author_id WHERE tb_projects.author_id = $1 ORDER BY tb_projects.id DESC", userId)
+		
+		for data.Next() {
+			var each = Project{}
+
+			err := data.Scan(&each.Id, &each.Name, &each.StartDate, &each.EndDate, &each.Duration, &each.Description, &each.Html, &each.Css, &each.Reactjs, &each.Javascript, &each.Image, &each.Author)
+			if err != nil {
+				return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+			}
+			// each.Duration = countDuration(each.StartDate, each.EndDate)
+			each.StartDateTime = each.StartDate.Format("2 January 2006")
+			each.EndDateTime = each.EndDate.Format("2 January 2006")
+			
+			result = append(result, each)
+		}
+	}
+	
+	if sess.Values["isLogin"] != true {
+		userData.IsLogin = false
+		} else {
+			userData.IsLogin = sess.Values["isLogin"].(bool)
+			userData.Name = sess.Values["name"].(string)
+		}
+		
+		projects := map[string]interface{}{
+			"Projects":     result,
+			// "FlashStatus":  sess.Values["status"],
+			// "FlashMessage": sess.Values["message"],
+			"DataSession":  userData,
+		}
+		
+		delete(sess.Values, "status")
+		delete(sess.Values, "message")
+		sess.Save(c.Request(), c.Response())
+		
+		if err != nil {
+			return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
+		}
+		return tmpl.Execute(c.Response(), projects)
+	}
+	func project(c echo.Context) error {
 	sess, _ := session.Get("session", c)
 
 	if sess.Values["isLogin"] != true {
@@ -222,7 +243,7 @@ func detailproject(c echo.Context) error {
 
 	var ProjectDetail = Project{} // pemanggialn struct interface
 
-	err := connection.Conn.QueryRow(context.Background(), "SELECT id, name, start_date, end_date, duration, description, image, html, css, react, javascript FROM tb_projects WHERE id=$1", id).Scan(
+	err := connection.Conn.QueryRow(context.Background(), "SELECT id, title, start_date, end_date, duration, description, image, html, css, react, javascript FROM tb_projects WHERE id=$1", id).Scan(
 		&ProjectDetail.Id, &ProjectDetail.Name, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Duration, &ProjectDetail.Description , &ProjectDetail.Image, &ProjectDetail.Html, &ProjectDetail.Css, &ProjectDetail.Reactjs, &ProjectDetail.Javascript )
 
 	if err != nil {
@@ -300,13 +321,16 @@ func addNewProject(c echo.Context) error {
 	}
 
 	// var arrTeks = "{"+ strings.Join(techs[], " , ")+ "}"
+	sess, _ := session.Get("session", c)
+	author := sess.Values["id"].(int)
 
-	image := "/public/image/image-project.png"
+	fmt.Println(author)
+	
+	image := c.Get("dataFile").(string)
 	// fmt.Println(arrTeks)
 	_, err := connection.Conn.Exec(context.Background(), 
 	 
-	"INSERT INTO tb_projects (name, description, start_date, end_date, duration, image, html, css, react, javascript) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)", name, description, startDate ,endDate, duration, image, html, css, reactjs, javascript)
-	
+	"INSERT INTO tb_projects (title, description, start_date, end_date, duration, image, html, css, react, javascript, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", name, description, startDate ,endDate, duration, image, html, css, reactjs, javascript, author)
 
 	if err != nil {
 		fmt.Print(err)
@@ -321,7 +345,7 @@ func editProject(c echo.Context) error {
 	var ProjectDetail = Project{}
 
 	err := connection.Conn.QueryRow(context.Background(), "SELECT * FROM tb_projects WHERE id=$1", id).Scan(
-		&ProjectDetail.Id, &ProjectDetail.Name, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Description, &ProjectDetail.Description, &ProjectDetail.Image, &ProjectDetail.Html, &ProjectDetail.Css, &ProjectDetail.Reactjs, &ProjectDetail.Javascript)
+		&ProjectDetail.Id, &ProjectDetail.Name, &ProjectDetail.StartDate, &ProjectDetail.EndDate, &ProjectDetail.Description, &ProjectDetail.Description, &ProjectDetail.Image, &ProjectDetail.Html, &ProjectDetail.Css, &ProjectDetail.Reactjs, &ProjectDetail.Javascript, &ProjectDetail.AuthorId)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
@@ -384,11 +408,11 @@ func ressEditProject(c echo.Context) error {
 		javascript = true
 	}
 
-	image := "/public/image/image-project.png"
+	image := c.Get("dataFile").(string)
 
 	_, err := connection.Conn.Exec(
 		context.Background(),
-		"UPDATE tb_projects SET name=$1, start_date=$2, end_date=$3, description=$4, image=$5, html=$6, css=$7, react=$8, javascript=$9 WHERE id=$10",
+		"UPDATE tb_projects SET title=$1, start_date=$2, end_date=$3, description=$4, image=$5, html=$6, css=$7, react=$8, javascript=$9 WHERE id=$10",
 		name, start, end, Description, image, html, css, react, javascript,  id,
 	)
 
@@ -473,7 +497,7 @@ func login(c echo.Context) error {
 
 	user := User{}
 	fmt.Println(user)
-	err = connection.Conn.QueryRow(context.Background(), "SELECT * FROM tb_user WHERE email=$1", email).Scan(&user.Name, &user.Email, &user.Password, &user.Id)
+	err = connection.Conn.QueryRow(context.Background(), "SELECT * FROM tb_user WHERE email=$1", email).Scan(&user.Name, &user.Email, &user.Password, &user.AuthorId)
 	if err != nil {
 		return redirectWithMessage(c, "Email Incorrect!", false, "/login")
 	}
@@ -489,7 +513,7 @@ func login(c echo.Context) error {
 	sess.Values["status"] = true
 	sess.Values["name"] = user.Name
 	sess.Values["email"] = user.Email
-	sess.Values["id"] = user.Id
+	sess.Values["id"] = user.AuthorId
 	sess.Values["isLogin"] = true
 	sess.Save(c.Request(), c.Response())
 
